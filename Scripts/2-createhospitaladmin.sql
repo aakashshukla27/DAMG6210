@@ -84,7 +84,40 @@ END;
 /
 
 
-employeeid
+-- employee table
+declare
+v_sql LONG;
+begin
+
+v_sql:='
+CREATE TABLE "EMPLOYEE" 
+   (	"employeeid" NUMBER(10) default employeeSequence.nextVal NOT NULL, 
+	"FNAME" VARCHAR2(20) NOT NULL, 
+	"LNAME" VARCHAR2(20)NOT NULL, 
+	"ADDRESS_1" VARCHAR2(20)NOT NULL, 
+	"ADDRESS_2" VARCHAR2(20), 
+	"CITY" VARCHAR2(20)NOT NULL, 
+	"STATE" VARCHAR2(20)NOT NULL, 
+	"ZIPCODE" VARCHAR2(20)NOT NULL, 
+	"PHONE" VARCHAR2(20)NOT NULL, 
+	"SPECC" VARCHAR2(20)NOT NULL, 
+	"EMAIL" VARCHAR2(20)NOT NULL, 
+	"PSWD" VARCHAR2(20)NOT NULL, 
+	"ROLE_ID" NUMBER(*,0)NOT NULL, 
+	"IS_ACTIVE" BINARY_DOUBLE NOT NULL,
+    CONSTRAINT "EMPLOYEE_PK" PRIMARY KEY ("employeeid")
+   )';
+execute immediate v_sql;
+
+EXCEPTION
+    WHEN OTHERS THEN
+      IF SQLCODE = -955 THEN
+        NULL; -- suppresses ORA-00955 exception
+      ELSE
+         RAISE;
+      END IF;
+END; 
+/
 
 --insurance table
 declare
