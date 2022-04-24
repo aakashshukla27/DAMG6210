@@ -8,4 +8,4 @@
 
 # ER Diagram
 
-![alt text](https://github.com/aakashshukla27/DAMG6210/blob/ERDiagram/ERDiagram/HospitalER.png)
+![alt text](https://github.com/aakashshukla27/DAMG6210/blob/ERDiagram/ERDiagram/HospitalER.jpeg)
