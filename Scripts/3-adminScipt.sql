@@ -52,6 +52,10 @@ grant select on dmddhospitaladmin.employee to labassistant1;
 grant select on dmddhospitaladmin.employee to pharmacist1;
 grant select on dmddhospitaladmin.employee to manager1;
 grant select on dmddhospitaladmin.employee to HR1;
+grant insert on dmddhospitaladmin.employee to manager1;
+grant update on dmddhospitaladmin.employee to manager1;
+grant insert on dmddhospitaladmin.employee to HR1;
+grant update on dmddhospitaladmin.employee to HR1;
 
 -- lab master
 grant select on dmddhospitaladmin.labmaster to labassistant1;
