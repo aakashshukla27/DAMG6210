@@ -2,9 +2,9 @@ Alter table appointment add constraint fk_patientId foreign key (patientId) refe
 Alter table appointment add constraint fk_doctorId foreign key (doctorId) references Employee(EMPLOYEEID) on delete cascade;
 Alter table employee add constraint fk_roleId foreign key (ROLE_ID) references rolemaster(roleid) on delete cascade;
 Alter table pharmacymaster add constraint fk_medid foreign key (medid) references suppliermaster(supplierid) on delete cascade;
-Alter table lab add constraint fk_patientid_lab foreign key (patientid) references PATIENTDETAILS(patientid) on delete cascade;
+Alter table lab add constraint fk_appointmentid_lab foreign key (appointmentid) references appointment(appointmentid) on delete cascade;
 Alter table lab add constraint fk_testid foreign key (testid) references labmaster(test_id) on delete cascade;
 Alter table bill add constraint fk_patientId_Bill foreign key (patientId) references PATIENTDETAILS(patientId) on delete cascade;
-Alter table insurance add constraint fk_patientId1 foreign key (patientId) references PATIENTDETAILS(patientId) on delete cascade;
+Alter table insurance add constraint fk_appointmentid_insurance foreign key (appointmentId) references appointment(appointmentid) on delete cascade;
 Alter table insurance add constraint fk_insuranceCode foreign key (insuranceCode) references insurancemaster (insuranceCode) on delete cascade;
 Alter table payroll add constraint fk_employeeid foreign key (EMP_ID) references employee(EMPLOYEEID) on delete cascade;
