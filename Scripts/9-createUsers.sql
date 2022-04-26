@@ -249,7 +249,6 @@ create or replace PROCEDURE supplierMasterDetails
 	STATE in VARCHAR2, 
 	ZIPCODE in  VARCHAR2
 )
-
 is 
 SUPPLIERID number default supplierSequence.nextval;
 begin 
