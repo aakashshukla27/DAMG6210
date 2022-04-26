@@ -230,7 +230,6 @@ create or replace PROCEDURE roomDetails
 	STATUS in VARCHAR2, 
 	BEDCOUNT in NUMBER
 )
-
 is 
 ROOM_ID number default roomSequence.nextval;
 begin 
