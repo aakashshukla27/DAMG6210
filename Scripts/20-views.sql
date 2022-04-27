@@ -7,3 +7,6 @@ create or replace view patientDocument AS
 select r.reportId, r.appointmentId, r.DIAGNOSIS, r.DOCTORID, p.PHARMACYID, pm.name, pm.PRICE
 from report r inner join prescription p on r.reportId = p.reportId
 inner join prescriptionmaster pm on p.pharmacyId = pm.id
+
+create or replace view HRView AS
+select * from employee inner join payroll on employee."employeeid" = payroll.emp_id;
