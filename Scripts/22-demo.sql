@@ -4,3 +4,8 @@ begin
 end;
 /
 
+
+begin
+addPrescription(5, 4);
+addPrescription(5, 12);
+end;
