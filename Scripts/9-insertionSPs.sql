@@ -147,7 +147,7 @@ create or replace PROCEDURE scheduleTest
 is 
 LABNUMBER number default labSequence.nextval;
 begin 
-   insert into Lab values (LABNUMBER, EMPLOYEEID , APPOINTMENTID, TESTID, HEIGHT, WEIGHT, BP, TEMPERATURE, to_date(TESTDATE, 'dd-mon-yyyy hh24:mi', TESTRESULT);
+   insert into Lab values (LABNUMBER, EMPLOYEEID , APPOINTMENTID, TESTID, HEIGHT, WEIGHT, BP, TEMPERATURE, to_date(TESTDATE, 'dd-mon-yyyy hh24:mi'), TESTRESULT);
    COMMIT;
 end;
 /
