@@ -80,17 +80,28 @@ create or replace PROCEDURE createAppointment
 
 is 
 appointmentId number default appointmentSequence.nextval;
+checkVar char(1);
+inactiveDoctor exception;
 begin 
-   insert into appointment values (appointmentId,PATIENTID, APPOINTMENTTYPE, to_date(REQUESTDATE, 'dd-mon-yyyy'), to_date(APPOINTMENTTIME, 'dd-mon-yyyy hh24:mi', DOCTORID, APPOINTMENTDESCRIPTION);
+   select IS_ACTIVE into checkVar from employee where "employeeid" = DOCTORID;
+	if checkVar = '1' then
+   insert into appointment values (appointmentId,PATIENTID, APPOINTMENTTYPE, to_date(REQUESTDATE, 'dd-mon-yyyy'), to_date(APPOINTMENTTIME, 'dd-mon-yyyy hh24:mi'), DOCTORID, APPOINTMENTDESCRIPTION);
+   createReport(appointmentId, 'NA', doctorid);
+   else 
+   raise inactiveDoctor;
+   end if;
    COMMIT;
+   EXCEPTION
+   WHEN inactiveDoctor THEN
+   DBMS_OUTPUT.PUT_LINE('Doctor is inactive');
 end;
 /
 
 create or replace PROCEDURE addInsuranceDetails
 (
 	PATIENTID in NUMBER, 
-	STARTDATE in DATE, 
-	ENDDATE in DATE, 
+	STARTDATE in VARCHAR2, 
+	ENDDATE in VARCHAR2, 
 	OPTICAL in VARCHAR2,
     DENTAL in VARCHAR2,
 	MATERNITY in VARCHAR2, 
@@ -100,7 +111,7 @@ create or replace PROCEDURE addInsuranceDetails
 is 
 id number default insuranceSequence.nextval;
 begin 
-   insert into insurance values (id, PATIENTID , STARTDATE, ENDDATE, OPTICAL, DENTAL, MATERNITY, INSURANCECODE);
+   insert into insurance values (id, PATIENTID , to_date(STARTDATE, 'dd-mon-yyyy'), to_date(ENDDATE, 'dd-mon-yyyy'), OPTICAL, DENTAL, MATERNITY, INSURANCECODE);
    COMMIT;
 end;
 /
@@ -129,14 +140,14 @@ create or replace PROCEDURE scheduleTest
 	WEIGHT in NUMBER, 
 	BP in NUMBER, 
 	TEMPERATURE in NUMBER, 
-	TESTDATE in DATE, 
+	TESTDATE in VARCHAR2, 
 	TESTRESULT in VARCHAR2
 )
 
 is 
 LABNUMBER number default labSequence.nextval;
 begin 
-   insert into Lab values (LABNUMBER, EMPLOYEEID , APPOINTMENTID, TESTID, HEIGHT, WEIGHT, BP, TEMPERATURE, TESTDATE, TESTRESULT);
+   insert into Lab values (LABNUMBER, EMPLOYEEID , APPOINTMENTID, TESTID, HEIGHT, WEIGHT, BP, TEMPERATURE, to_date(TESTDATE, 'dd-mon-yyyy hh24:mi'), TESTRESULT);
    COMMIT;
 end;
 /
