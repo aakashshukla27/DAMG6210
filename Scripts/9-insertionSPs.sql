@@ -163,15 +163,15 @@ create or replace PROCEDURE addPharmacyData
 	MEDID in NUMBER, 
 	COMPANY in VARCHAR2, 
 	QUANTITY in NUMBER, 
-	PRODUCEDDATE in DATE, 
-	EXPIRYDATE in DATE, 
+	PRODUCEDDATE in VARCHAR2, 
+	EXPIRYDATE in VARCHAR2, 
 	SUPPLIERID in NUMBER
 )
 
 is 
 ID number default pharmacyMasterSequence.nextval;
 begin 
-   insert into pharmacyMaster values (ID, MEDID , COMPANY, QUANTITY, PRODUCEDDATE, EXPIRYDATE, SUPPLIERID);
+   insert into pharmacyMaster values (ID, MEDID , COMPANY, QUANTITY, TO_DATE(PRODUCEDDATE, 'dd-mon-yyyy'), TO_DATE(EXPIRYDATE, 'dd-mon-yyyy'), SUPPLIERID);
    COMMIT;
 end;
 /
