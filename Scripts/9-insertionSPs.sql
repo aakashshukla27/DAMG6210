@@ -35,14 +35,14 @@ STATE in VARCHAR2,
 ZIPCODE in VARCHAR2,
 PHONE in VARCHAR2,
 EMAIL in VARCHAR2,
-PSWD in VARCHAR2,
-DOB in DATE
+DOB in varchar2,
+PSWD in VARCHAR2
 )
 
 is 
 patientId number default PATIENTSEQUENCE.nextval;
 begin 
-   insert into patientdetails values (patientId, FNAME, LNAME, GENDER, ADDRESS_1, ADDRESS_2, CITY, STATE, ZIPCODE, PHONE, EMAIL, PSWD, DOB);
+   insert into patientdetails values (patientId, FNAME, LNAME, GENDER, ADDRESS_1, ADDRESS_2, CITY, STATE, ZIPCODE, PHONE, EMAIL, TO_DATE(DOB, 'dd-mon-yyyy'), PSWD);
    COMMIT;
 end;
 /
