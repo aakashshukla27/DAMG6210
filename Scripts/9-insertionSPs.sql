@@ -80,9 +80,20 @@ create or replace PROCEDURE createAppointment
 
 is 
 appointmentId number default appointmentSequence.nextval;
+checkVar char(1);
+inactiveDoctor exception;
 begin 
-   insert into appointment values (appointmentId,PATIENTID, APPOINTMENTTYPE, to_date(REQUESTDATE, 'dd-mon-yyyy'), to_date(APPOINTMENTTIME, 'dd-mon-yyyy hh24:mi', DOCTORID, APPOINTMENTDESCRIPTION);
+   select IS_ACTIVE into checkVar from employee where "employeeid" = DOCTORID;
+	if checkVar = '1' then
+   insert into appointment values (appointmentId,PATIENTID, APPOINTMENTTYPE, to_date(REQUESTDATE, 'dd-mon-yyyy'), to_date(APPOINTMENTTIME, 'dd-mon-yyyy hh24:mi'), DOCTORID, APPOINTMENTDESCRIPTION);
+   createReport(appointmentId, 'NA', doctorid);
+   else 
+   raise inactiveDoctor;
+   end if;
    COMMIT;
+   EXCEPTION
+   WHEN inactiveDoctor THEN
+   DBMS_OUTPUT.PUT_LINE('Doctor is inactive');
 end;
 /
 
