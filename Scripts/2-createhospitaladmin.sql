@@ -342,8 +342,8 @@ begin
 v_sql:='
    CREATE TABLE "PRESCRIPTIONMASTER" 
    (	"ID" NUMBER(10) default prescriptionMasterSequence.nextVal NOT NULL, 
-	"NAME" VARCHAR2(20) NOT NULL, 
-	"PRICE" FLOAT(126) NOT NULL,
+	"NAME" VARCHAR2(100) NOT NULL, 
+	"PRICE" number NOT NULL,
     CONSTRAINT "PRESCRIPTIONMASTER_PK" PRIMARY KEY ("ID")
    )';
 execute immediate v_sql;

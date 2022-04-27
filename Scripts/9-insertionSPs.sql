@@ -238,6 +238,30 @@ begin
 end;
 /
 
+create or replace procedure addLabMaster
+(
+	TESTPRICE in NUMBER,
+	TESTNAME in VARCHAR2
+)
+is 
+labTestId number default labMasterSequence.nextval;
+begin 
+   insert into labMaster values (labTestId, TESTPRICE, TESTNAME);
+   COMMIT;
+end;
+
+create or replace procedure addMedicinesToMaster
+(
+	price NUMBER,
+	name VARCHAR2
+)
+is 
+id number default prescriptionMasterSequence.nextval;
+begin 
+   insert into prescriptionMaster values (id, name, price);
+   COMMIT;
+end;
+
 
 
 
