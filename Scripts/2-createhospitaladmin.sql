@@ -27,7 +27,6 @@ v_sql:='create table appointment
   (
    "APPOINTMENTID" NUMBER(5) default appointmentSequence.nextVal NOT NULL,
        "PATIENTID" NUMBER(6) NOT NULL,
-       "APPOINTMENTNUMBER" VARCHAR2(100),
        "APPOINTMENTTYPE"  VARCHAR2(100),
        "REQUESTDATE" DATE,
        "APPOINTMENTTIME" DATE,
