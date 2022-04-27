@@ -71,10 +71,9 @@ end;
 create or replace PROCEDURE createAppointment
 (
 	PATIENTID in NUMBER,
-    APPOINTMENTNUMBER in VARCHAR2,
     APPOINTMENTTYPE in VARCHAR2,
-    REQUESTDATE in  DATE,
-    APPOINTMENTTIME in DATE,
+    REQUESTDATE in  VARCHAR2,
+    APPOINTMENTTIME in VARCHAR2,
     DOCTORID in  NUMBER,
     APPOINTMENTDESCRIPTION in VARCHAR2
 )
@@ -82,7 +81,7 @@ create or replace PROCEDURE createAppointment
 is 
 appointmentId number default appointmentSequence.nextval;
 begin 
-   insert into appointment values (appointmentId,PATIENTID, APPOINTMENTNUMBER, APPOINTMENTTYPE, REQUESTDATE, APPOINTMENTTIME, DOCTORID, APPOINTMENTDESCRIPTION);
+   insert into appointment values (appointmentId,PATIENTID, APPOINTMENTTYPE, to_date(REQUESTDATE, 'dd-mon-yyyy'), to_date(APPOINTMENTTIME, 'dd-mon-yyyy hh24:mi', DOCTORID, APPOINTMENTDESCRIPTION);
    COMMIT;
 end;
 /
