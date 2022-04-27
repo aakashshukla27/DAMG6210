@@ -53,7 +53,6 @@ insert into INSURANCE values (156,60429,'14-Mar-2022','26-Aug-2021','no','yes','
 insert into INSURANCE values (183,44781,'25-Mar-2022','07-Aug-2021','no','yes','no',73);
 insert into INSURANCE values (142,64725,'11-May-2021','21-Jul-2021','no','yes','no',58);
 
-
 select * from ROOM;
 
 insert into ROOM values (166,'twinshare','occupied',2);
