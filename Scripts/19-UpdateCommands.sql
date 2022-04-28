@@ -54,14 +54,19 @@ is
 cost number;
 copay number;
 beforeInsuranceCost number;
+pid number;
 BEGIN
-select im.copay into copay from bill b
-inner join insurance i on b.insuranceNumber = i.ID
-inner join insuranceMaster im on im.insuranceCode = i.insuranceCode
-where b.appointmentId = appId;
+
+
+select patientid into pid from appointment where appointmentid = appId;
+select b.copay into copay from insurance a
+inner join 
+insurancemaster b on b.insurancecode = a.insurancecode
+where a.patientid = pid;
 select doctorFee + pharmacyCharge + roomCharge + OPTCharge + noOfDays + miscCharge + labCharge into beforeInsuranceCost
 from bill
 where appointmentId = appId;
 cost := beforeInsuranceCost - copay;
 return cost;
 END;
+/

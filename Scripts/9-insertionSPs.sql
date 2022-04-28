@@ -134,7 +134,7 @@ end;
 create or replace PROCEDURE scheduleTest
 (
 	EMPLOYEEID in NUMBER, 
-	APPOINTMENTID in NUMBER, 
+	appid in NUMBER, 
 	TESTID in NUMBER, 
 	HEIGHT in NUMBER, 
 	WEIGHT in NUMBER, 
@@ -146,9 +146,22 @@ create or replace PROCEDURE scheduleTest
 
 is 
 LABNUMBER number default labSequence.nextval;
+labcharges number default 0;
+testCharge number;
+records number;
 begin 
-   insert into Lab values (LABNUMBER, EMPLOYEEID , APPOINTMENTID, TESTID, HEIGHT, WEIGHT, BP, TEMPERATURE, to_date(TESTDATE, 'dd-mon-yyyy hh24:mi'), TESTRESULT);
+   insert into Lab values (LABNUMBER, EMPLOYEEID , appid, TESTID, HEIGHT, WEIGHT, BP, TEMPERATURE, to_date(TESTDATE, 'dd-mon-yyyy hh24:mi'), TESTRESULT);
    COMMIT;
+   select count(*) into records from bill where appointmentid = appid;
+   if records = 0 then
+    labcharges := 0;
+    else
+        select labcharge into labcharges from bill where appointmentid = appid;
+    end if;
+	select test_cost into testCharge from labmaster where test_id = testid;
+    labcharges := labcharges + testCharge;
+   update bill set LABCHARGE = labcharges where appointmentid = appid;
+   commit;
 end;
 /
 
