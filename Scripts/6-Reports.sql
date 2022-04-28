@@ -24,3 +24,19 @@ dbms_output.put_line('List of medicines with supplied less than 50');
 END;
 /
 select * from pharmacymaster where quantity < 50;
+
+
+BEGIN
+dbms_output.put_line('List of Doctors in Different Specialization');
+END;
+/
+SELECT specc, COUNT(*)
+  FROM employee
+  GROUP BY specc;
+
+BEGIN
+dbms_output.put_line('List of Active Employees');
+END;
+/
+  SELECT count(*) FROM EMPLOYEE
+WHERE IS_ACTIVE = 1
