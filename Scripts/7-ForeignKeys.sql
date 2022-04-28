@@ -7,3 +7,4 @@ Alter table lab add constraint fk_testid foreign key (testid) references labmast
 --Alter table bill add constraint fk_patientId_Bill foreign key (appointmentid) references appointment(appointmentid) on delete cascade;
 Alter table insurance add constraint fk_insuranceCode foreign key (insuranceCode) references insurancemaster (insuranceCode) on delete cascade;
 --Alter table payroll add constraint fk_employeeid foreign key (EMP_ID) references employee(employeeid) on delete cascade;
+
