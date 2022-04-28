@@ -44,3 +44,24 @@ drop trigger insertToBill;
 -- cursor c1 is select testId from lab where appointmentid = appId;
 -- cursor c2 is select * from report where appointmentid = appId;
 -- begin
+
+
+create or replace function generateTotalBillAmount(
+    appId in number
+)
+return number
+is
+cost number;
+copay number;
+beforeInsuranceCost number;
+BEGIN
+select im.copay into copay from bill b
+inner join insurance i on b.insuranceNumber = i.ID
+inner join insuranceMaster im on im.insuranceCode = i.insuranceCode
+where b.appointmentId = appId;
+select doctorFee + pharmacyCharge + roomCharge + OPTCharge + noOfDays + miscCharge + labCharge into beforeInsuranceCost
+from bill
+where appointmentId = appId;
+cost := beforeInsuranceCost - copay;
+return cost;
+END;
