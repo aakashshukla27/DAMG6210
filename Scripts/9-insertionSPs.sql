@@ -259,6 +259,7 @@ begin
    insert into labMaster values (labTestId, TESTPRICE, TESTNAME);
    COMMIT;
 end;
+/
 
 create or replace procedure addMedicinesToMaster
 (
@@ -271,6 +272,40 @@ begin
    insert into prescriptionMaster values (id, name, price);
    COMMIT;
 end;
+/
+
+grant execute on dmddhospitaladmin.addinsurancedetails to hr1;
+grant execute on dmddhospitaladmin.addinsurancedetails to patient1;
+grant execute on dmddhospitaladmin.addinsurancedetails to manager1;
+grant execute on dmddhospitaladmin.addlabmaster to receptionist1;
+grant execute on dmddhospitaladmin.addinsurancedetails to labassistant1;
+
+grant execute on dmddhospitaladmin.createAppointment to receptionist1;
+grant execute on dmddhospitaladmin.createAppointment to patient1;
+
+grant execute on dmddhospitaladmin.createUsers to hr1;
+grant execute on dmddhospitaladmin.createUsers to manager1;
+
+grant execute on dmddhospitaladmin.createPatient to patient1;
+grant execute on dmddhospitaladmin.createPatient to receptionist1;
+
+grant execute on dmddhospitaladmin.createBill to receptionist1;
+grant execute on dmddhospitaladmin.addMasterInsuranceData to manager1;
+grant execute on dmddhospitaladmin.scheduleTest to receptionist1;
+grant execute on dmddhospitaladmin.scheduleTest to patient1;
+
+grant execute on dmddhospitaladmin.addPayrollDetails to hr1;
+grant execute on dmddhospitaladmin.addPharmacyData to pharmacist1;
+grant execute on dmddhospitaladmin.addPharmacyData to manager1;
+grant execute on dmddhospitaladmin.addPrescription to doctor1;
+grant execute on dmddhospitaladmin.createReport to labassistant1;
+
+grant execute on dmddhospitaladmin.addRoomData to manager1;
+grant execute on dmddhospitaladmin.addSupplierData to pharmacist1;
+
+grant execute on dmddhospitaladmin.addLabMaster to labassistant1;
+grant execute on dmddhospitaladmin.addMedicinesToMaster to pharmacist1;
+
 
 
 
